@@ -1,0 +1,27 @@
+'use strict';
+
+//////////////////////////////////////////////////////////////////////////
+/////////////////     API Catalogue for db store   //////////////////////
+////////////////////////////////////////////////////////////////////////
+
+
+const db =        require('./characters')
+
+
+////////////////////////////////////
+///////   get all agents    ////////
+//////////////////////////////////
+const getCharacters = (token, cb) => {
+
+  async function thread() {
+    let result = await db.get()
+    return result
+  }
+
+  thread().then((result) => {
+    cb(result)
+  }).catch((err) => {
+    console.log("ERROR IN Get Agent PROCESSING")
+    console.log(err)
+  })
+}
