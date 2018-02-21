@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        #char1 {
+            height: 25px;
+            width: 25px;
+            border: solid black 2px;
+            background-color: blue;
+        }
+
+        #char2 {
+            height: 25px;
+            width: 25px;
+            border: solid black 2px;
+            background-color: green;
+        }
+
+        #char3 {
+            height: 25px;
+            width: 25px;
+            border: solid black 2px;
+            background-color: pink;
+        }
+
+        #char4 {
+            height: 25px;
+            width: 25px;
+            border: solid black 2px;
+            background-color: yellow;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="signDiv">
+        Username:
+        <input id="signDiv-username" type="text" />
+        <br /> Password:
+        <input id="signDiv-password" type="password" />
+        <button id="signDiv-signIn">Sign In</button>
+        <button id="signDiv-signUp">Sign Up</button>
+    </div>
+
+    <div id="gameDiv" style="display: none;">
+        <div id="game" style="position: absolute; width: 500px; height: 500px">
+            <canvas id="ctx" width="500" height="500" style="position: absolute; border:1px solid #000000;"></canvas>
+            <canvas id="ctx-ui" width="500" height="500" style="position: absolute; border:1px solid #000000;"></canvas>
+
+            <div id="ui" style="position: absolute; width: 500px; height: 500px;">
+                <button onclick="changeMap()" style="position: absolute; bottom: 0px; left: 0px;">
+                    Change Map
+                </button>
+            </div>
+
+        </div>
+
+        <div id="belowGame" style="margin-top: 520px;">
+            <div id="chat-text" style="width: 500px; height: 100px; overflow-y: scroll;">
+                <div>Hello!</div>
+            </div>
+
+            <form id="chat-form">
+                <input id="chat-input" type="text" style="width: 500px;"></input>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Character Select -->
+    <div id="charSelect" style="display: none;">
+        <div id="char1"></div>
+        <div id="char2"></div>
+        <div id="char3"></div>
+        <div id="char4"></div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="public/js/app.js"></script>
+</body>
+
+</html>

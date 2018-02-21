@@ -1,11 +1,12 @@
 {
-  "name": "client",
+  "name": "game",
   "version": "0.1.0",
+  "proxy" : "http://localhost:6969/",
   "private": true,
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.0"
+    "react-scripts": "1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
