@@ -6,7 +6,7 @@
   "scripts": {
     "server": "node server.js",
     "client": "node scripts/start-client.js",
-    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "start": "nodemon server.js",
     "startdev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,11 +23,7 @@
   "dependencies": {
     "express": "^4.16.2",
     "mongojs": "^2.5.0",
-    "mongoose": "^5.0.6",
-    "react-router-dom": "^4.2.2",
     "socket.io": "^2.0.4"
   },
-  "devDependencies": {
-    "concurrently": "^3.5.1"
-  }
+  "devDependencies": {}
 }

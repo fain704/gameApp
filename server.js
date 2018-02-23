@@ -1,6 +1,6 @@
 // Initialize Database
 var mongojs = require('mongojs');
-var db = mongojs('localhost:27017/gamedb', ['account', 'progress']);
+var db = mongojs('mongodb://admin:hateU123@ds245518.mlab.com:45518/reveriedb', ['account']);
 
 // Require Dependencies
 var express = require('express');
@@ -1248,6 +1248,7 @@ var isValidPassword = function (data, cb) {
         username: data.username,
         password: data.password
     }, function (err, res) {
+
         if (res.length > 0)
             cb(true);
         else
@@ -1259,6 +1260,7 @@ var isUsernameTaken = function (data, cb) {
     db.account.find({
         username: data.username
     }, function (err, res) {
+
         if (res.length > 0)
             cb(true);
         else
