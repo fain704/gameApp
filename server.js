@@ -131,6 +131,17 @@ var Player = function (param) {
             self.spdY = self.maxSpd;
         else
             self.spdY = 0;
+
+        // Border Collision
+        if (self.x >= 3010) {
+            self.x = 3009;
+        } else if (self.x <= 30) {
+            self.x = 31;
+        } else if (self.y >= 1580) {
+            self.y = 1579;
+        } else if (self.y <= 40) {
+            self.y = 41;
+        }
     }
 
     self.getInitPack = function () {
@@ -221,6 +232,18 @@ var Fighter = function (param) {
             self.spdY = self.maxSpd;
         else
             self.spdY = 0;
+
+
+        // Border Collision
+        if (self.x >= 3010) {
+            self.x = 3009;
+        } else if (self.x <= 30) {
+            self.x = 31;
+        } else if (self.y >= 1580) {
+            self.y = 1579;
+        } else if (self.y <= 40) {
+            self.y = 41;
+        }
     }
 
     self.getInitPack = function () {
@@ -310,6 +333,17 @@ var Ranger = function (param) {
             self.spdY = self.maxSpd;
         else
             self.spdY = 0;
+
+        // Border Collision
+        if (self.x >= 3010) {
+            self.x = 3009;
+        } else if (self.x <= 30) {
+            self.x = 31;
+        } else if (self.y >= 1580) {
+            self.y = 1579;
+        } else if (self.y <= 40) {
+            self.y = 41;
+        }
     }
 
     self.getInitPack = function () {
@@ -405,6 +439,18 @@ var Paladin = function (param) {
             self.spdY = self.maxSpd;
         else
             self.spdY = 0;
+
+
+        // Border Collision
+        if (self.x >= 3010) {
+            self.x = 3009;
+        } else if (self.x <= 30) {
+            self.x = 31;
+        } else if (self.y >= 1580) {
+            self.y = 1579;
+        } else if (self.y <= 40) {
+            self.y = 41;
+        }
     }
 
     self.getInitPack = function () {
