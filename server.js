@@ -7,19 +7,25 @@ var express = require('express');
 var app = express();
 var serv = require('http').Server(app);
 
+app.use(function (req, res, next) {
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.header('Expires', '-1');
+    res.header('Pragma', 'no-cache');
+    next()
+});
 
 app.use('/public', express.static(__dirname + '/Views/public'));
 // app.use('/game', express.static(__dirname + '/Views/public/game.html'))
 
 app.use('/game', function (req, res) {
-    console.log("------------------hi------------------")
+    // console.log("------------------hi------------------")
     res.sendFile(__dirname + '/Views/public/game.html');
 });
 
 app.use(express.static('client/build'));
 
 // app.get('/', function (req, res) {
-//     res.sendFile(__dirname + '/client/buil');
+//     res.sendFile(__dirname + '/client/build');
 // });
 
 

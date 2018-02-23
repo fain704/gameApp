@@ -20,7 +20,7 @@ A STATE OF BEING PLEASANTLY LOST IN ONE'S THOUGHTS</p>
           </div>
         <Card pictureClass=""  paragraph="test" title="BARBARIAN">
             <hr/>
-            <p>Cruel Wicked and Inhuman</p>
+            <p>Cruel Wicked and Inhuman.</p>
              <br/>
              <p>Attack: 7/10</p>
              <p>Hit Points: 3/10</p>
