@@ -24,6 +24,9 @@ app.use('/game', function (req, res) {
 
 app.use(express.static('client/build'));
 
+app.use('/favicon.ico', function (req, res) {
+  res.sendFile(__dirname + 'client/build/favicon.ico');
+});
 // app.get('/', function (req, res) {
 //     res.sendFile(__dirname + '/client/build');
 // });
