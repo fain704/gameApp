@@ -101,8 +101,8 @@ var Player = function (param) {
     self.pressingAttack = false;
     self.mouseAngle = 0;
     self.maxSpd = 10;
-    self.hp = 10;
-    self.hpMax = 10;
+    self.hp = 20;
+    self.hpMax = 20;
     self.score = 0;
 
     var super_update = self.update;
@@ -126,6 +126,7 @@ var Player = function (param) {
     }
 
     self.updateSpd = function () {
+        //console.log('HIIIIIII: ' + self.x);
         if (self.pressingRight)
             self.spdX = self.maxSpd;
         else if (self.pressingLeft)
@@ -147,9 +148,10 @@ var Player = function (param) {
             self.x = 31;
         } else if (self.y >= 1580) {
             self.y = 1579;
-        } else if (self.y <= 40) {
-            self.y = 41;
+        } else if (self.y <= 230) {
+            self.y = 231;
         }
+
     }
 
     self.getInitPack = function () {
@@ -201,10 +203,10 @@ var Fighter = function (param) {
     self.pressingDown = false;
     self.pressingAttack = false;
     self.mouseAngle = 0;
-    self.maxSpd = 5;
-    self.hp = 3;
-    self.hpMax = 4;
-    self.score = 1;
+    self.maxSpd = 7;
+    self.hp = 30;
+    self.hpMax = 30;
+    self.score = 0;
 
     var super_update = self.update;
     self.update = function () {
@@ -240,7 +242,6 @@ var Fighter = function (param) {
             self.spdY = self.maxSpd;
         else
             self.spdY = 0;
-
 
         // Border Collision
         if (self.x >= 3010) {
@@ -281,6 +282,7 @@ var Fighter = function (param) {
 
     Player.list[self.id] = self;
 
+
     initPack.player.push(self.getInitPack());
     return self;
 
@@ -288,7 +290,6 @@ var Fighter = function (param) {
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 var Ranger = function (param) {
     var self = Entity(param);
@@ -303,9 +304,9 @@ var Ranger = function (param) {
     self.pressingAttack = false;
     self.mouseAngle = 0;
     self.maxSpd = 15;
-    self.hp = 5;
-    self.hpMax = 5;
-    self.score = 2;
+    self.hp = 25;
+    self.hpMax = 25;
+    self.score = 0;
 
     var super_update = self.update;
     self.update = function () {
@@ -352,6 +353,7 @@ var Ranger = function (param) {
         } else if (self.y <= 40) {
             self.y = 41;
         }
+
     }
 
     self.getInitPack = function () {
@@ -408,10 +410,10 @@ var Paladin = function (param) {
     self.pressingDown = false;
     self.pressingAttack = false;
     self.mouseAngle = 0;
-    self.maxSpd = 3;
-    self.hp = 20;
-    self.hpMax = 20;
-    self.score = 4;
+    self.maxSpd = 5;
+    self.hp = 200;
+    self.hpMax = 200;
+    self.score = 0;
 
     var super_update = self.update;
     self.update = function () {
@@ -448,7 +450,6 @@ var Paladin = function (param) {
         else
             self.spdY = 0;
 
-
         // Border Collision
         if (self.x >= 3010) {
             self.x = 3009;
@@ -459,6 +460,7 @@ var Paladin = function (param) {
         } else if (self.y <= 40) {
             self.y = 41;
         }
+
     }
 
     self.getInitPack = function () {
@@ -534,7 +536,7 @@ Player.onConnect = function (socket, username) {
         } else {
             player.map = 'field';
         }
-        // console.log(player.map);
+        console.log(player.map);
     });
 
     socket.on('sendMsgToServer', function (data) {
@@ -609,7 +611,7 @@ Fighter.onConnect = function (socket, username) {
         } else {
             player.map = 'field';
         }
-        //console.log(player.map);
+        console.log(player.map);
     });
 
     socket.on('sendMsgToServer', function (data) {
@@ -635,7 +637,7 @@ Fighter.onConnect = function (socket, username) {
 
     });
 
-    socket.emit('init', {
+    socket.emit('initf', {
         selfId: socket.id,
         type: 'fighter',
         player: Fighter.getAllInitPack(),
@@ -681,7 +683,7 @@ Ranger.onConnect = function (socket, username) {
         } else {
             player.map = 'field';
         }
-        // console.log(player.map);
+        console.log(player.map);
     });
 
     socket.on('sendMsgToServer', function (data) {
@@ -707,7 +709,7 @@ Ranger.onConnect = function (socket, username) {
 
     });
 
-    socket.emit('init', {
+    socket.emit('initr', {
         selfId: socket.id,
         type: 'ranger',
         player: Ranger.getAllInitPack(),
@@ -754,7 +756,7 @@ Paladin.onConnect = function (socket, username) {
         } else {
             player.map = 'field';
         }
-        //console.log(player.map);
+        console.log(player.map);
     });
 
     socket.on('sendMsgToServer', function (data) {
@@ -780,7 +782,7 @@ Paladin.onConnect = function (socket, username) {
 
     });
 
-    socket.emit('init', {
+    socket.emit('initp', {
         selfId: socket.id,
         type: 'paladin',
         player: Paladin.getAllInitPack(),
@@ -881,7 +883,7 @@ var Bullet = function (param) {
     self.toRemove = false;
     var super_update = self.update;
     self.update = function () {
-        if (self.timer++ > 100)
+        if (self.timer++ > 50)
             self.toRemove = true;
         super_update();
 
@@ -889,7 +891,7 @@ var Bullet = function (param) {
             var p = Player.list[i];
             if (self.map === p.map && self.getDistance(p) < 32 && self.parent !== p.id) {
                 // handle collision / hp--
-                p.hp -= 1;
+                p.hp -= 4;
 
 
                 if (p.hp <= 0) {
@@ -958,7 +960,7 @@ var Sword = function (param) {
             var p = Player.list[i];
             if (self.map === p.map && self.getDistance(p) < 32 && self.parent !== p.id) {
                 // handle collision / hp--
-                p.hp -= 4;
+                p.hp -= 10;
 
 
                 if (p.hp <= 0) {
@@ -1016,7 +1018,7 @@ var Arrow = function (param) {
     self.toRemove = false;
     var super_update = self.update;
     self.update = function () {
-        if (self.timer++ > 10)
+        if (self.timer++ > 20)
             self.toRemove = true;
         super_update();
 
@@ -1094,7 +1096,7 @@ var Spear = function (param) {
             var p = Player.list[i];
             if (self.map === p.map && self.getDistance(p) < 32 && self.parent !== p.id) {
                 // handle collision / hp--
-                p.hp -= 4;
+                p.hp -= 6;
 
 
                 if (p.hp <= 0) {
@@ -1256,7 +1258,6 @@ var isValidPassword = function (data, cb) {
         username: data.username,
         password: data.password
     }, function (err, res) {
-
         if (res.length > 0)
             cb(true);
         else
@@ -1268,7 +1269,6 @@ var isUsernameTaken = function (data, cb) {
     db.account.find({
         username: data.username
     }, function (err, res) {
-
         if (res.length > 0)
             cb(true);
         else
@@ -1291,7 +1291,7 @@ io.sockets.on('connection', function (socket) {
     socket.id = Math.random();
     SOCKET_LIST[socket.id] = socket;
 
-    // Package sent from public containing Username & Password
+    // Package sent from client containing Username & Password
     socket.on('signIn', function (data) {
         isValidPassword(data, function (res) {
             if (res) {
@@ -1395,22 +1395,21 @@ var removePack = {
 
 // Calls update loop
 setInterval(function () {
-    //console.log(pack);
+
     var pack = {
         player: Player.update(),
         bullet: Bullet.update()
     }
 
-    /*var fpack = {
-        player: Fighter.update(),
-        bullet: Sword.update()
-    }*/
-
     for (var i in SOCKET_LIST) {
         var socket = SOCKET_LIST[i];
         socket.emit('init', initPack);
+        //socket.emit('initf', initPack);
+        //socket.emit('initr', initPack);
+        //socket.emit('initp', initPack);
         socket.emit('update', pack);
         socket.emit('remove', removePack);
+
     }
 
     // Empties the packs every frame to avoid duplications
@@ -1418,5 +1417,6 @@ setInterval(function () {
     initPack.bullet = [];
     removePack.player = [];
     removePack.bullet = [];
+
 
 }, 1000 / 25)
