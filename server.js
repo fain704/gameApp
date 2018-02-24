@@ -502,9 +502,9 @@ var Paladin = function (param) {
 
 Player.list = {};
 Player.onConnect = function (socket, username) {
-    var map = 'forest';
-    if (Math.random() < 0.5) {
-        map = 'field';
+    var map = 'field';
+    if (Math.random() < 0.0000000005) {
+        map = 'forest';
     }
 
     // This is where we actually CREATE the player
@@ -578,10 +578,10 @@ Player.onConnect = function (socket, username) {
 
 Fighter.onConnect = function (socket, username) {
 
-    var map = 'forest';
-    if (Math.random() < 0.5) {
-        map = 'field';
-    }
+  var map = 'field';
+  if (Math.random() < 0.0000000005) {
+      map = 'forest';
+  }
 
     // This is where we actually CREATE the player
     var player = Fighter({
@@ -650,10 +650,10 @@ Fighter.onConnect = function (socket, username) {
 
 Ranger.onConnect = function (socket, username) {
 
-    var map = 'forest';
-    if (Math.random() < 0.5) {
-        map = 'field';
-    }
+  var map = 'field';
+  if (Math.random() < 0.0000000005) {
+      map = 'forest';
+  }
 
     // This is where we actually CREATE the player
     var player = Ranger({
@@ -723,10 +723,10 @@ Ranger.onConnect = function (socket, username) {
 
 Paladin.onConnect = function (socket, username) {
 
-    var map = 'forest';
-    if (Math.random() < 0.5) {
-        map = 'field';
-    }
+  var map = 'field';
+  if (Math.random() < 0.0000000005) {
+      map = 'forest';
+  }
 
     // This is where we actually CREATE the player
     var player = Paladin({
