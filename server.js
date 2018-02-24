@@ -14,6 +14,11 @@ app.use(function (req, res, next) {
     next()
 });
 
+app.get('/favicon.ico', function(req, res){
+  console.log("trying to find favicon");
+  res.sendFile(__dirname + '/client/build/')
+})
+
 app.use('/public', express.static(__dirname + '/Views/public'));
 // app.use('/game', express.static(__dirname + '/Views/public/game.html'))
 
@@ -24,8 +29,8 @@ app.use('/game', function (req, res) {
 
 app.use(express.static('client/build'));
 
-app.use('/favicon.ico', function (req, res) {
-  res.sendFile(__dirname + 'client/build/favicon.ico');
+app.get('/favicon.ico', function (req, res) {
+  res.sendFile(__dirname + '/client/favicon.ico');
 });
 // app.get('/', function (req, res) {
 //     res.sendFile(__dirname + '/client/build');
